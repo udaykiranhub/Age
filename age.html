@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    label{
+        font-size: 35px;
+        color:rgb(255, 17, 0);
+    }
+    input{
+        font-size:30px;
+        border-width: 3px;
+    }
+    input:hover{
+        background-color: rgb(0, 221, 255);
+    }
+fieldset{
+    border-width: 5px;
+    width:600px;
+    height:auto;
+   padding: 30px;
+   padding-left: 50px;
+   position:relative;
+   left:400px;
+   border-radius: 30px;
+}
+fieldset:hover{
+    background-color: aqua;
+}
+button{
+    position:absolute;
+    left:200px;
+    bottom: 10px;
+    border: 1px solid black;
+    border-width: 3px;
+    color:lawngreen;
+    background-color: black;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+}
+button:hover{
+    width:110px;
+    height:50px;
+}
+span{
+    font-size: 30px;
+    color:blue;
+}
+li{
+    list-style-type:disc;
+   size:20px ;
+}
+    </style>
+</head>
+
+
+<body>
+
+<div id="age">
+<fieldset>
+<div class="input">
+    <label>   Enter Your birth Date:</label>
+        <input type="date" id="bdate"/>
+ 
+</div>
+<div>
+    <h1 id="h1"></h1>
+    <ul>
+        <li><span id=years>YEARS</span></li>
+        <br>
+       
+        <li><span id=months>MONTHS</span></li>
+        <br>
+        <li><span id="days">DAYS</span></li>
+        <br>
+        <li><span id="hours">HOURS</span></li>
+        <br>
+        <li><span id="minutes">MINUTES</span></li>
+        <br>
+        <li><span id="seconds">SECONDS</span></li>
+
+    </ul>
+</div>
+<div class="btn">
+    <br>
+    <br>
+<button onclick=" return calculate()">calculate</button>
+</div>
+</fieldset>
+</div>
+
+    <script type="text/javascript">
+    function calculate(){
+        setInterval(()=>{
+
+            let bdate=new Date(document.getElementById("bdate").value);
+            let now=new Date();
+
+            let agenow=now.getTime() - bdate.getTime();
+            //document.write(agems);
+            //document.getElementById("h1").innerHTML=agenow;
+
+            let agesec=agenow/1000;
+            let agemin=agesec/60;
+            let agehrs=agemin/60;
+            let agedays=agehrs/24;
+            let agemonth=agedays/30.4375;
+            let ageyears=agemonth/12;
+           
+            document.querySelector("#years").innerHTML="YEARS :"+Math.floor(ageyears);
+            document.querySelector("#months").innerHTML="MONTHS :"+Math.floor(agemonth % 12);
+            document.querySelector("#days").innerHTML="DAYS :"+Math.floor(agedays % 30.4375);
+            document.querySelector("#hours").innerHTML= "HOURS :"+Math.floor(agehrs % 24);
+            document.querySelector("#minutes").innerHTML= "MINUTES:"+Math.floor(agemin % 60);
+            document.querySelector("#seconds").innerHTML="SECONDS :"+Math.floor(agesec % 60);
+
+            
+    
+          
+        },1000)
+    }
+    </script>
+</body>
+</html>
